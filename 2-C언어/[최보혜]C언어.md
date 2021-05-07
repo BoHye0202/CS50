@@ -122,8 +122,8 @@ int main(void)
 
 ```C
 #include <stdio.h>
-void cough(void)
-int get_positive_int(void)
+void cough(void);
+int get_positive_int(void);
 
 int main void()
 {
@@ -153,3 +153,21 @@ int get_positive_int(void) //입력은 없으나 output으로 int형식 출력
 ```
 
 ## 7. 하드웨어의 한계
+컴퓨터는 RAM(랜덤 액세스 메모리)이라는 물리적 저장장치를 포함하고 있습니다. 우리가 작성한 프로그램은 구동 중에 RAM에 저장되는데요, RAM은 유한한 크기의 비트만 저장할 수 있기 때문에 때때로 부정확한 결과를 내기도 합니다.
+따라서, 이러한 한계에 대처하기 위해서 다루고자 하는 데이터 값의 범위를 유의하며 프로그램을 작성해야 합니다.
+
+### 정수 오버플로우
+```C
+#include <stdio.h>
+#include <unistd.h>
+
+// 다음과 같이 1부터 시작해서 2를 계속 곱하여 출력하면 int타입이 저장할 수 있는 수를 넘으면 error가 생긴다. (overflow)
+int main(void)
+{
+    for (int i = 1; ; i *= 2)
+    {
+        printf("%i\n", i);
+        sleep(1);
+    }
+}
+```
